@@ -1,0 +1,205 @@
+<div v-if="notice.show" :class="
+            'alert text-white alert-dismissible fade show rounded-0 mb-0 text-lg-center bg-' +
+            notice.color
+        " role="alert">
+    <div class="container">
+        <div class="alert-inner">
+            <span :class="
+                        'badge text-uppercase rounded me-2 bg-white text-' +
+                        notice.color
+                    ">
+                    {{ notice.type }}
+                </span> {{ notice.message }}
+        </div>
+        <!-- /.alert-inner -->
+    </div>
+    <!-- /.container -->
+    <button @click="hideNotice" button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<header class="header header-light header-topbar" id="navbar-spy">
+    <!-- Start .top-bar-->
+    <div class="top-bar">
+        <div class="block-left">
+            <div class="top-contact">
+                <div class="contact-infos">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="contact-body">
+                        <a href="tel:+55-654-541-17">Phone: {{ settings.phone }}</a
+                            >
+                        </div>
+                    </div>
+                    <div class="contact-infos">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-body">
+                            <a href="mailto:Sanera@7oroof.com"
+                                >Email: {{ settings.email }}</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="contact-infos contact-directions">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-body">
+                            <a href="#">{{ settings.adress }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-right">
+            <div class="module module-social">
+                <a class="share-facebook" href="#"><i class="fab fa-facebook-f"> </i></a
+                    ><a class="share-instagram" href="#"
+                        ><i class="fab fa-instagram"></i></a
+                    ><a class="share-twitter" href="#"
+                        ><i class="fab fa-twitter"></i
+                    ></a>
+            </div>
+
+        </div>
+    </div>
+    <!-- End .top-bar-->
+    <nav class="navbar navbar-expand-xl navbar-sticky" id="primary-menu">
+        <Link :href="route('welcome')">
+        <jet-application-mark class="block h-12 w-auto" />
+        </Link>
+        <div class="module-holder module-holder-phone">
+            <button @click="switchCollapseNav" class="navbar-toggler collapsed" type="button"><span class="navbar-toggler-icon"></span></button>
+        </div>
+        <div :class="collapseNav.defaultcss" id="navbarContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item" id="contact" data-hover="">
+                    <a href="contact.html"><span>Home</span></a>
+                </li>
+                <li class="nav-item" id="contact" data-hover="">
+                    <a href="contact.html"><span>Service</span></a>
+                </li>
+                <li class="nav-item" id="contact" data-hover="">
+                    <a href="contact.html"><span>Partners</span></a>
+                </li>
+                <li class="nav-item" id="contact" data-hover="">
+                    <a href="contact.html"><span>Customer</span></a>
+                </li>
+                <li class="nav-item" id="contact" data-hover="">
+                    <a href="contact.html"><span>Contact</span></a>
+                </li>
+            </ul>
+            <div class="module-holder">
+                <!-- End .module-search-->
+                <!-- Start .module-contact-->
+                <div class="module-contact">
+                    <a class="btn btn--secondary" href="page-request-estimate.html">request an estimate</a
+                        >
+                    </div>
+                </div>
+                <!--  End .module-holder-->
+            </div>
+            <!--  End .navbar-collapse-->
+        </nav>
+        <!--  End .container-->
+    </header>
+
+    <div class="quto" v-if="quot.length > 0">
+        <Link href="/request-for-quotation">
+            <div class="btnquto">
+                Ask for quotation x{{ quot.length }}
+            </div></Link
+        >
+    </div>
+
+     <div class="item">
+            <div class="item-inner">
+                <article>
+                    <div class="card">
+                        <figure class="card-img-top overlay overlay1 hover-scale">
+                            <Link :href="
+                  route('singleObjectSell', {
+                    id: item.id,
+                    title: item.title.replace(' ', '-'),
+                  })
+                ">
+                            <img class="imgelearn" :src="asset + item.pictureCover" alt="" /></Link>
+                            <figcaption>
+                                <h5 class="from-top mb-0">Voir plus</h5>
+                            </figcaption>
+                        </figure>
+                        <div class="card-body">
+                            <span v-if="!selected" @click="setProductForQuot" style="cursor: pointer"
+                                class="badge bg-blue rounded-pill mt-2 mb-4 ml-2">Select</span>
+                            <span v-else @click="RemoveProductForQuot" style="cursor: pointer"
+                                class="badge bg-orange rounded-pill mt-2 mb-4 ml-2">Remove</span>
+                            <div class="post-header">
+                                <div class="post-category text-line">
+                                    <a v-if="item.title" href="#" class="hover" rel="category">
+                                        {{ item.title }}
+                                    </a>
+                </div>
+                <!-- /.post-category -->
+                <p>{{ item.description.substring(0, 50) }}</p>
+            </div>
+            <!-- /.post-header -->
+        </div>
+        </div>
+        <!-- /.card -->
+        </article>
+        <!-- /article -->
+        </div>
+        <!-- /.item-inner -->
+        </div>
+
+
+        <div>
+            <!-- End .breadcrumb-wrap-->
+            <section class="blog blog-single" id="blog">
+                <div class="breadcrumb-wrap">
+                    <div class="container">
+                        <ol class="breadcrumb d-flex">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="blog-grid-fullwidth.html">blog</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Start .blog-entry-->
+                            <div class="blog-entry">
+                                <div class="entry-img"><img :src="asset + project.cover" alt="entry image" />
+                                    <div class="entry-date"> <span class="month">Created at : {{ new
+                                        Date(project.created_at).toDateString() }}</span></div>
+                                </div>
+                                <div class="entry-content">
+                                    <div class="entry-meta">
+                                        <div class="entry-category"><a href="blog-grid-fullwidth.html">Cleaning</a><a href="blog-grid-fullwidth.html">Tips</a><a href="blog-grid-fullwidth.html">Tricks</a></div>
+                                        <div class="divider"> </div>
+                                        <div class="entry-author">
+                                            <a href="blog-grid-fullwidth.html">
+                                                <p>Admin</p>
+                                            </a>
+                                        </div>
+
+                                        <!-- Start .module-social-->
+                                        <div class="module module-social"><a class="share-facebook" href="#"><i
+                                                class="fab fa-facebook-f"> </i></a><a class="share-instagram" href="#"><i class="fab fa-instagram"></i></a><a class="share-twitter" href="#"><i class="fab fa-twitter"></i></a></div>
+                                        <!-- End .module-social-->
+                                    </div>
+                                </div>
+                                <!-- .entry-meta end-->
+                                <div class="entry-title">
+                                    <h2>{{ project.title }}</h2>
+                                </div>
+                                <div class="entry-bio" v-html="project.htmlPart">
+
+                                </div>
+
+
+                            </div>
+                            <!-- End .blog-entry-->
+                        </div>
+
+                    </div>
+                    <!-- End .row-->
+                </div>
+            </section>
+
+        </div>
